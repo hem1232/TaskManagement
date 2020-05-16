@@ -1,0 +1,23 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav  #drawer class="sidenav animate__animated animate__slideInLeft" fixedInViewport
+  [attr.role]="'navigation'"
+  [mode]="'side'"
+  [opened]="true">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/home']">Home</a>
+      <a mat-list-item [routerLink]="['/tasks']">Tasks</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" fxLayout="row" fxLayoutAlign="start center">
+
+      <span class="animate__animated animate__rotateIn">Tasks Control</span>
+      <span fxFlex></span>
+      <label class="animate__animated animate__rotateIn">My Tasks : {{ leaderTaskCount}} &nbsp;| &nbsp;</label>
+      <label class="animate__animated animate__rotateIn">Team Tasks : {{ teamTaskCount}}</label>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

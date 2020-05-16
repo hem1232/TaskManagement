@@ -1,0 +1,69 @@
+<div class="animate__animated animate__pulse">
+  <div class="add-title">
+    <h2 class="primary">Add Task</h2>
+  </div>
+  <div>
+    <form [formGroup]="addTaskForm" (submit)="saveTask()">
+      <mat-grid-list cols="2" rowHeight="85px">
+        <mat-grid-tile>
+          <div class="text-inside">
+            <mat-form-field>
+              <input matInput placeholder="Creator" formControlName="creator" required autocomplete="off">
+              <mat-error *ngIf="addTaskForm.controls.creator.hasError('required')">
+                Please enter Creator name
+              </mat-error>
+              <mat-error *ngIf="addTaskForm.controls.creator.hasError('pattern')">
+                Please enter valid Creator name
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-grid-tile>
+
+
+        <mat-grid-tile>
+          <div class="text-inside">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker1" formControlName="startdate" placeholder="Start date" required autocomplete="off">
+              <mat-error *ngIf="addTaskForm.controls.startdate.hasError('required')">
+                Please enter Start date
+              </mat-error>
+              <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <div class="text-inside">
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" formControlName="enddate" placeholder="End date" required autocomplete="off">
+              <mat-error *ngIf="addTaskForm.controls.enddate.hasError('required')">
+                Please enter End date
+              </mat-error>
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2></mat-datepicker>
+            </mat-form-field>
+          </div>
+        </mat-grid-tile>
+
+        <mat-grid-tile>
+          <div class="text-inside">
+            <mat-form-field>
+              <textarea matInput placeholder="Task text" formControlName="text" required autocomplete="off"></textarea>
+              <mat-error *ngIf="addTaskForm.controls.text.hasError('required')">
+                Please enter Task text
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </mat-grid-tile>
+
+      </mat-grid-list>
+
+      <div class="btn-sec">
+        <button mat-raised-button type="submit" color="primary" class="Update-btn" [disabled]="!addTaskForm.valid" (click)="onAddTask()">Add</button>
+        <button mat-raised-button type="button" class="Discard-btn" (click)="closeDialog()">Cancel</button>
+      </div>
+
+    </form>
+  </div>
+</div>

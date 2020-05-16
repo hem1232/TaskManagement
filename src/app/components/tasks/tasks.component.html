@@ -1,0 +1,58 @@
+<div style="display: flex;justify-content: center;margin-top: 10px;" class="animate__animated animate__slideInLeft">
+  <mat-menu #filterMenu="matMenu">
+    <button mat-menu-item *ngFor="let obj of filterItemList" (click)="setSelectedFilteritem(obj)">{{obj.key}}</button>
+  </mat-menu>
+
+  <button style="margin-right: 10px;" color="primary" matTooltip="filter tasks" mat-raised-button class="datatablefilterbtn" [matMenuTriggerFor]="filterMenu">
+    {{selectedFilteritem.key}}
+    <mat-icon class="filter-icon">filter_list</mat-icon>
+  </button>
+
+  <button style="margin-right: 10px;" color="primary" matTooltip="add task" mat-raised-button (click)="openTaskDialog()">
+    Add Task
+  </button>
+
+  </div>
+
+<div class="tablediv scrollable animate__animated animate__slideInUp">
+<table class="full-width-table" mat-table matSort  [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="isCompleted">
+    <th mat-header-cell *matHeaderCellDef>
+    Task Status
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()"
+                    (change)="setTaskStatus(row)"
+                    [checked]="row.isCompleted">
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="text">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Text </th>
+    <td mat-cell *matCellDef="let element"> {{element.text}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="creator">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Creator </th>
+    <td mat-cell *matCellDef="let element"> {{element.creator}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="start">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> StartDate </th>
+    <td mat-cell *matCellDef="let element"> {{element.start}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="end">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> EndDate </th>
+    <td mat-cell *matCellDef="let element"> {{element.end}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+</div>
+
+
+

@@ -1,0 +1,19 @@
+<div class='animate__animated animate__backInDown'>
+<table>
+  <tr>
+    <th>Text</th>
+    <th>Creator</th>
+    <th>IsCompleted</th>
+    <th>StartDate</th>
+    <th>EndDate</th>
+  </tr>
+  <tr *ngFor="let task of taskData">
+    <td>{{ task.text }}</td>
+    <td>{{ task.creator }}</td>
+    <td>{{ task.isCompleted }}</td>
+    <td>{{ task.start }}</td>
+    <td>{{ task.end }}</td>
+  </tr>
+</table>
+</div>
+
